@@ -160,8 +160,7 @@ func Start(cfg Config) *HTMLServer {
 	r.HandleFunc("/persons-table", personTableHandler)
 	r.HandleFunc("/robots.txt", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
-		w.Write([]byte(`User-agent: *
-		Disallow: /`))
+		w.Write([]byte("\n\t\tUser-agent: *\n\t\tAllow: /allowed\n\t\tDisallow: /disallowed\n\t\tDisallow: /redirect\n\t\t"))
 	})
 	r.HandleFunc("/allowed", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)
